@@ -1,3 +1,7 @@
+-- DROP TABLE specialities;
+-- DROP TABLE developers;
+-- DROP TABLE tasks;
+
 CREATE TABLE IF NOT EXISTS specialities (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100)
@@ -11,7 +15,7 @@ CREATE TABLE IF NOT EXISTS developers (
    speciality_id INT,
    salary     DECIMAL,
 
-   CONSTRAINT fk_developers_speciality_id FOREIGN KEY (speciality) REFERENCES specialities (id)
+   CONSTRAINT fk_developers_speciality_id FOREIGN KEY (speciality_id) REFERENCES specialities (id)
 );
 
 
@@ -48,10 +52,10 @@ VALUES
 
 INSERT INTO tasks (title, story_points, developer_id, created_at)
 VALUES
-    (1, 'TASK 1', 2, 1, '2023-01-01'),
-    (2, 'TASK 2', 5, 1, '2023-02-01'),
-    (3, 'TASK 3', 8, 1, '2023-03-01'),
-    (4, 'TASK 4', 1, 4, '2023-02-01'),
-    (5, 'TASK 5', 3, 4, '2023-04-01'),
-    (6, 'TASK 6', 5, 5, '2023-02-01'),
-    (7, 'TASK 7', 1, 5, '2023-05-01');
+('TASK 1', 2, 1, '2023-01-01'),
+('TASK 2', 5, 1, '2023-02-01'),
+('TASK 3', 8, 1, '2023-03-01'),
+('TASK 4', 1, 4, '2023-02-01'),
+('TASK 5', 3, 4, '2023-04-01'),
+('TASK 6', 5, 5, '2023-02-01'),
+('TASK 7', 1, 5, '2023-05-01');
