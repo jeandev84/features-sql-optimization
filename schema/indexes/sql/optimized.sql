@@ -8,12 +8,24 @@
 
 -- Уточнение GROUP BY: В GROUP BY-клаузе скобки вокруг d.id не требуются
 
-SELECT
+EXPLAIN SELECT
     d.id,
     COUNT(t.id) AS total_tasks_amount,
     SUM(t.story_points) AS total_story_points
 FROM developers d
 LEFT JOIN tasks t ON d.id = t.developer_id AND EXTRACT(MONTH FROM created_at) = 1
+GROUP BY d.id
+HAVING SUM(t.story_points) < 5
+ORDER BY d.id;
+
+
+
+EXPLAIN ANALYSE SELECT
+    d.id,
+    COUNT(t.id) AS total_tasks_amount,
+    SUM(t.story_points) AS total_story_points
+FROM developers d
+         LEFT JOIN tasks t ON d.id = t.developer_id AND EXTRACT(MONTH FROM created_at) = 1
 GROUP BY d.id
 HAVING SUM(t.story_points) < 5
 ORDER BY d.id;
